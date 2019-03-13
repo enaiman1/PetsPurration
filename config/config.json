@@ -2,13 +2,13 @@
   "development": {
     "username": "root",
     "password": "easyPass",
-    "database": "exampledb",
+    "database": "adoptiondb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "easyPass",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
