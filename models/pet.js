@@ -13,12 +13,13 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TINYINT
         },
         size: {
+            type: DataTypes.STRING
         },
         gender: {
-
+            type: DataTypes.BOOLEAN
         },
         location: {
-
+            type: DataTypes.STRING
         },
         adopted: {
             type: DataTypes.BOOLEAN
