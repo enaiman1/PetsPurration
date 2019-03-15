@@ -5,6 +5,7 @@ var exphbs = require("express-handlebars");
 var db = require("./models");
 
 var seed = require("./seed.js");
+var petSeeds = require("./petsSeed.js");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -34,6 +35,10 @@ db.sequelize.sync(syncOptions).then(function() {
 
   for (var i = 0; i < seed.length; i++) {
     db.User.build(seed[i]).save();
+  };
+
+  for (var j = 0; j < petSeeds.length; j++) {
+    db.Pet.build(petSeeds[j]).save();
   };
 
   app.listen(PORT, function() {
