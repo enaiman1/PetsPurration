@@ -25,7 +25,7 @@ var petsSeed = [{
         age: 7,
         size: "Large",
         gender: 0,
-        "Orlando",
+        location: "Orlando",
         adopted: 1
     },
     {
