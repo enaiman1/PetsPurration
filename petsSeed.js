@@ -127,4 +127,6 @@ var petsSeed = [{
         location: "Ocoee",
         adopted: 1
     }
-]
+];
+
+module.exports = petsSeed;
