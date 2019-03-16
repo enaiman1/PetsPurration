@@ -1,23 +1,16 @@
 {
   "development": {
     "username": "root",
-    "password": "veritas19",
+    "password": "easyPass",
     "database": "adoptiondb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-<<<<<<< HEAD
     "username": "",
     "password": null,
     "database": "",
     "host": "",
-=======
-    "username": "root",
-    "password": "veritas19",
-    "database": "testdb",
-    "host": "localhost",
->>>>>>> cd9ebdb81d31113b83fb8e11315bf5a20ea588c1
     "dialect": "mysql",
     "logging": false
   },
