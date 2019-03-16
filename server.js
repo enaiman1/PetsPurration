@@ -1,4 +1,5 @@
 require("dotenv").config();
+// var env = require("dotenv").load();
 var express = require("express");
 var exphbs = require("express-handlebars");
 
@@ -9,6 +10,7 @@ var petSeeds = require("./petsSeed.js");
 
 var passport = require("passport");
 var session = require("express-session");
+// var bodyParser = require("body-parser");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -16,6 +18,8 @@ var PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
 app.use(passport.initialize());
@@ -27,10 +31,11 @@ app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/apiRoutes")(app);
+require("./routes/auth.js")(app, passport);
 require("./routes/htmlRoutes")(app);
 
 // Load passport strategies
-// require("./config/passport/passport.js")(passport, models.user);
+require("./config/passport/passport.js")(passport, db.User);
 
 var syncOptions = { force: false };
 
