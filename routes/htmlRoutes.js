@@ -19,6 +19,14 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
+
+  app.get("/signin", function(req, res) {
+    res.render("signin");
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
