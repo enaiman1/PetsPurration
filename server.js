@@ -4,8 +4,8 @@ var exphbs = require("express-handlebars");
 
 var db = require("./models");
 
-var userSeeds = require("./userSeeds.js");
-var petSeeds = require("./petsSeed.js");
+var userSeeds = require("./userSeed.js");
+var petSeeds = require("./petSeed.js");
 
 var passport = require("passport");
 var session = require("express-session");
@@ -17,7 +17,7 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -40,21 +40,27 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
+db.sequelize
+  .sync(syncOptions)
+  .then(function() {
+    for (var i = 0; i < userSeeds.length; i++) {
+      db.User.build(userSeeds[i]).save();
+    }
 
-  for (var i = 0; i < userSeeds.length; i++) {
-    db.User.build(userSeeds[i]).save();
-  };
+    for (var j = 0; j < petSeeds.length; j++) {
+      db.Pet.build(petSeeds[j]).save();
+    }
 
-  for (var j = 0; j < petSeeds.length; j++) {
-    db.Pet.build(petSeeds[j]).save();
-  };
-
-  app.listen(PORT, function() {
-    console.log("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    app.listen(PORT, function() {
+      console.log(
+        "==> Listening on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT
+      );
+    });
+  })
+  .catch(function(err) {
+    console.log(err, "Something went wrong in the server");
   });
-}).catch(function(err) {
-  console.log(err, "Something went wrong in the server");
-});
 
 module.exports = app;
