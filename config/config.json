@@ -7,10 +7,10 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "easyPass",
-    "database": "testdb",
-    "host": "localhost",
+    "username": "",
+    "password": null,
+    "database": "",
+    "host": "",
     "dialect": "mysql",
     "logging": false
   },

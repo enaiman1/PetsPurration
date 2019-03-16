@@ -7,6 +7,9 @@ var db = require("./models");
 var seed = require("./seed.js");
 var petSeeds = require("./petsSeed.js");
 
+var passport = require("passport");
+var session = require("express-session");
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -14,6 +17,9 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 // Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -23,10 +29,13 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-var syncOptions = { force: true };
+// Load passport strategies
+require("./config/passport/passport.js")(passport, models.user);
+
+var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === "development") {
   syncOptions.force = true;
 }
 
@@ -44,6 +53,8 @@ db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
     console.log("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });
+}).catch(function(err) {
+  console.log(err, "Something went wrong in the server");
 });
 
 module.exports = app;
