@@ -7,3 +7,9 @@ var easyUsers = [
 ];
 
 module.exports = easyUsers;
+
+var userCreate = [
+    {firstname: "Matthew", lastname: "Weaber", username: "project2", phone: 1234567890, location: "Kissimmmee", housing: "Apartment", email: "matthew.weaber@gmail.com", password: "secretPass123"}
+];
+
+module.exports = userCreate;
