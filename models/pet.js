@@ -10,13 +10,13 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         age: {
-            type: DataTypes.TINYINT
+            type: DataTypes.STRING
         },
         size: {
             type: DataTypes.STRING
         },
         gender: {
-            type: DataTypes.BOOLEAN
+            type: DataTypes.STRING
         },
         location: {
             type: DataTypes.STRING

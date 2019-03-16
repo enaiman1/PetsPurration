@@ -4,7 +4,7 @@ var exphbs = require("express-handlebars");
 
 var db = require("./models");
 
-var seed = require("./seed.js");
+var userSeeds = require("./userSeeds.js");
 var petSeeds = require("./petsSeed.js");
 
 var passport = require("passport");
@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === "development") {
 db.sequelize.sync(syncOptions).then(function() {
 
   for (var i = 0; i < userSeeds.length; i++) {
-    db.User.build(seed[i]).save();
+    db.User.build(userSeeds[i]).save();
   };
 
   for (var j = 0; j < petSeeds.length; j++) {

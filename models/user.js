@@ -1,22 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-        },
- 
         firstname: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             notEmpty: true
         },
  
         lastname: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             notEmpty: true
         },
         username: {
-            type: Sequelize.TEXT
+            type: DataTypes.TEXT
         },
         phone: {
             type: DataTypes.STRING,
@@ -32,22 +26,22 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         email: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             validate: {
                 isEmail: true
             }
         },
         password: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
  
         last_login: {
-            type: Sequelize.DATE
+            type: DataTypes.DATE
         },
  
         status: {
-            type: Sequelize.ENUM('active', 'inactive'),
+            type: DataTypes.ENUM('active', 'inactive'),
             defaultValue: 'active'
         }        
     });
