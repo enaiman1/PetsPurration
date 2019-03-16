@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === "development") {
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
 
-  for (var i = 0; i < seed.length; i++) {
+  for (var i = 0; i < userSeeds.length; i++) {
     db.User.build(seed[i]).save();
   };
 

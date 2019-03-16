@@ -17,8 +17,12 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "mysql2": "^1.6.4",
+<<<<<<< HEAD
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+=======
+    "nodemon": "^1.18.10",
+>>>>>>> cd9ebdb81d31113b83fb8e11315bf5a20ea588c1
     "sequelize": "^4.41.2"
   },
   "devDependencies": {
