@@ -1,33 +1,84 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+{{!-- dogs to be adopted --}}
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+      <div class="w3-container">
+                <!--Pet selections-->
+
+{{!-- breed --}}
+                {{!-- <div class="w3-bar w3-center" id="petAttributes" style="margin-top: 2rem;">
+                        <div class="w3-dropdown-hover" style="width: 20%">
+                            <button class="w3-button w3-hover-green" id="">Breed</button>
+                        </div> 
+                      </div>--}}
+
+{{!-- age --}}
+                        {{!-- <div class="w3-dropdown-hover" style="width: 20%">
+                            <button class="w3-button w3-hover-green" id="">Age</button>
+                                <div class="w3-dropdown-content w3-bar-block w3-border">
+                                    <a href="#" class="w3-bar-item w3-button">Puppy</a>
+                                    <a href="#" class="w3-bar-item w3-button">Young</a>
+                                    <a href="#" class="w3-bar-item w3-button">Adult</a>
+                                    <a href="#" class="w3-bar-item w3-button">Senior</a>
+                                </div>
+                        </div> --}}
+{{!-- size --}}
+                        {{!-- <div class="w3-dropdown-hover" style="width: 20%">
+                            <button class="w3-button w3-hover-green" id="">Size</button>
+                                <div class="w3-dropdown-content w3-bar-block w3-border">
+                                    <a href="#" class="w3-bar-item w3-button">Small</a>
+                                    <a href="#" class="w3-bar-item w3-button">Medium</a>
+                                    <a href="#" class="w3-bar-item w3-button">Large</a>
+                                </div>
+                        </div> --}}
+
+{{!-- gender --}}
+                        <div class="w3-dropdown-hover" style="width: 20%">
+                            <button class="w3-button w3-hover-green" id="">Gender</button>
+                                <div class="w3-dropdown-content w3-bar-block w3-border">
+                                    <a href="#" class="w3-bar-item w3-button" id="male">Male</a>
+                                    <a href="#" class="w3-bar-item w3-button" id="female">Female</a>
+                                </div>
+                        </div>
+{{!--good with  --}}
+                        {{!-- <div class="w3-dropdown-hover" style="width: 20%">
+                            <button class="w3-button w3-hover-green" id="">Good With</button>
+                                <div class="w3-dropdown-content w3-bar-block w3-border">
+                                        <a href="#" class="w3-bar-item w3-button">Kids</a>
+                                        <a href="#" class="w3-bar-item w3-button">Other Dogs</a>
+                                        <a href="#" class="w3-bar-item w3-button">Cats</a>
+                                </div>
+                        </div> --}}
+                 
+        </div>
+
+
+<section id="petListing" class="w3-container" >
+{{#each Pets}}
+<div class="pet">
+<h3>Name: {{name}}</h3>
+{{!--proper code for photo goes here --}}
+{{!-- <src>{{photo}}</src> --}}
+<ul>
+  <li>Breed: {{breed}}</li>
+  <li>Age: {{age}}</li>
+  <li>Size: {{size}}</li>
+  <li>Gender: {{gender}}</li>
+  <li>location: {{location}}</li>
+  <li>Available: {{adopted}}</li>
+</ul>
+</div>
+{{else}}
+<p>No available pets to adopt at this time!</p>
+{{/each}}
+
+</section>
+
+
+
+  <!--Here goes the body of the page-->
+        <!--Dog image with buttons to search for pets-->
+        {{!-- <div class="w3-display-container">
+                <img src="https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="dog" width="100%" height="20%">
+                <div class="w3-display-middle">
+                    <a href="#" class="w3-button w3-blue w3-hover-green">Find A Dog</a>
+                </div>
+        </div> --}}
