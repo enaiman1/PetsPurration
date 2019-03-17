@@ -10,7 +10,7 @@ module.exports = function(app) {
     });
   });
 
-  // Load example page and pass in an example by id
+  // Load second page, display one pet
   app.get("/pets/:id", function(req, res) {
     db.Pet.findOne({ where: { id: req.params.id } }).then(function(onePet) {
       res.render("example", {
