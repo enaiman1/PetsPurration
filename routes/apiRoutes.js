@@ -15,16 +15,16 @@ module.exports = function(app) {
   });
 
   // Create a new example
-  app.post("/api/", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+  // app.post("/api/", function(req, res) {
+  //   db.Example.create(req.body).then(function(dbExample) {
+  //     res.json(dbExample);
+  //   });
+  // });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+  // app.delete("/api/examples/:id", function(req, res) {
+  //   db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+  //     res.json(dbExample);
+  //   });
+  // });
 };
