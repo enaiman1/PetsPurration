@@ -3,13 +3,44 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+  {{!-- link to w3.css framework --}}
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"> --}}
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-  <title>Home Page</title>
+  {{!-- link to jquery --}}
+   <script src="https://code.jquery.com/jquery.js"></script>
+   {{!-- link to js file --}}
+  <script src="/js/index.js"></script>
+
+  <title>PetsPurration</title>
 </head>
+<!--Container that wraps the page-->
+    <div class="w3-container">
+        <!--Navigation Menu-->
+        <div class="w3-bar w3-blue" id="navbar">
+            <a href="#" class="w3-bar-item w3-button" id="home">PetsPurration</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-button w3-hover-green" id="findPet">Find a Pet</button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="#" class="w3-bar-item w3-button w3-hover-green" id="findDog">Find a Dog</a>
+                    </div>
+            </div>
+            <a href="../adopted.handlebars" class="w3-bar-item w3-button w3-hover-green" id="adoptedPets">Adopted Pets</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-green w3-right" id="userLogin">Sign In / Register</a>
+        </div>
 
 <body>
+  
   {{{body}}}
+
+
+  {{!-- <footer class="w3-bar w3-blue w3-center">
+   <p>Copyright 2019 | PetsPurration</p>
+   <p>coded by David W, Jesus S, Matthew W, Eric Naiman</p>
+  </footer> --}}
+
+  </div>
+
 </body>
 
 </html>

@@ -9,6 +9,15 @@ module.exports = function(app) {
       });
     });
   });
+   // page of the dogs been adobted
+   app.get("/adopted", function(req, res) {
+    db.Pet.findAll({}).then(function(allPets) {
+      res.render("adopted", {
+        Pets: allPets
+      });
+    });
+  });
+
 
   // Load second page, display one pet
   app.get("/pets/:id", function(req, res) {
