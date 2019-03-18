@@ -1,16 +1,41 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
+  // Get all pets, return as JSON
   app.get("/api/pets", function(req, res) {
     db.Pet.findAll({}).then(function(allPets) {
       res.json(allPets);
     });
   });
-
+  // Get all users, return as JSON
   app.get("/api/users", function(req, res) {
     db.User.findAll({}).then(function(allUsers) {
       res.json(allUsers);
+    });
+  });
+  // Get all males or females, return as JSON
+  app.get("/api/pets/:gender", function(req, res) {
+    db.Pet.findAll({
+      where: {
+        gender: req.params.gender
+      }
+    }).then(function(allMales) {
+      res.json(allMales);
+    });
+  });
+
+  // Get all dogs of a param, of param, return as JSON
+  app.get("/api/pets/:col/:val", function(req, res) {
+
+    var col = req.params.col;
+    var val = req.params.val;
+
+    db.Pet.findAll({
+      where: {
+        col: val
+      }
+    }).then(function(result) {
+      res.json(result);
     });
   });
 
