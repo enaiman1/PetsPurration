@@ -7,12 +7,14 @@ module.exports = function(app) {
       res.json(allPets);
     });
   });
+
   // Get all users, return as JSON
   app.get("/api/users", function(req, res) {
     db.User.findAll({}).then(function(allUsers) {
       res.json(allUsers);
     });
   });
+  
   // Get all males or females, return as JSON
   // app.get("/api/pets/gender/:gender", function(req, res) {
   //   db.Pet.findAll({
