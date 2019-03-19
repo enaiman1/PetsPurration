@@ -23,6 +23,7 @@ module.exports = function(passport, user) {
     });
 
     // Define our custom strategy with our instance of the LocalStrategy
+    // We want to login with an email and password
     passport.use("local-signup", new LocalStrategy(
         // Define what request fields our usernameField and passwordField are (passport variables)
         {
@@ -34,6 +35,7 @@ module.exports = function(passport, user) {
         function(req, email, password, done) {
             // Handle storing user's details
             var generateHash = function(password) {
+                // We hash the password
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
 
@@ -55,7 +57,11 @@ module.exports = function(passport, user) {
                         email: email,
                         password: userPassword,
                         firstname: req.body.firstname,
-                        lastname: req.body.lastname
+                        lastname: req.body.lastname,
+                        username: req.body.username,
+                        phone: req.body.phonenumber,
+                        location: req.body.location,
+                        housing: req.body.housing
                     };
 
                     // Add new user to the database

@@ -9,27 +9,39 @@ module.exports = function(app) {
       });
     });
   });
-   // page of the dogs been adobted
+   // Load page of the dogs that have been adopted
    app.get("/adopted", function(req, res) {
-    db.Pet.findAll({}).then(function(allPets) {
+    db.Pet.findAll({
+      where: {
+        adopted: true
+      }
+    }).then(function(petsAdopted) {
+        // res.json(petsAdopted);
       res.render("adopted", {
-        Pets: allPets
+        Pets: petsAdopted
       });
     });
   });
 
-
-  // Load second page, display one pet
-  app.get("/pets/:id", function(req, res) {
-    db.Pet.findOne({ where: { id: req.params.id } }).then(function(onePet) {
-      res.render("example", {
-        Pets: onePet
-      });
-    });
-  });
+  // // Load second page, display one pet
+  // app.get("/pets/:id", function(req, res) {
+  //   db.Pet.findOne({ where: { id: req.params.id } }).then(function(onePet) {
+  //     res.render("example", {
+  //       Pets: onePet
+  //     });
+  //   });
+  // });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
   });
+
+  function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+
+        return next();
+
+    res.redirect("/signin");
+  }
 };
