@@ -8,7 +8,7 @@
 {{!-- gender --}}
                         <div class="w3-dropdown-hover" style="width: 20%">
                             <button class="w3-button w3-hover-green" id="">Gender</button>
-                                <div class="w3-dropdown-content w3-bar-block w3-border" id="gender">
+                                <div class="w3-dropdown-content w3-bar-block w3-border" id="genderDropDown">
                                     <a href="#" class="w3-bar-item w3-button" id="male">Male</a>
                                     <a href="#" class="w3-bar-item w3-button" id="female">Female</a>
                                 </div>
@@ -16,8 +16,8 @@
 
  {{!-- age --}}
                         <div class="w3-dropdown-hover" style="width: 20%">
-                            <button class="w3-button w3-hover-green" >Age</button>
-                                <div class="w3-dropdown-content w3-bar-block w3-border" id="age">
+                            <button class="w3-button w3-hover-green" id="">Age</button>
+                                <div class="w3-dropdown-content w3-bar-block w3-border">
                                     <a href="#" class="w3-bar-item w3-button">Puppy</a>
                                     <a href="#" class="w3-bar-item w3-button">Young</a>
                                     <a href="#" class="w3-bar-item w3-button">Adult</a>
@@ -60,9 +60,8 @@
 
 <section id="petListing" class="w3-container" >
 {{#each Pets}}
-{{!-- {{#unless petsAdopted}}
+{{!-- {{#unless adopted}}
 {{/unless}} --}}
-
 <div class="pet" data-id={{id}}>
 <h3>Name: {{name}}</h3>
 {{!--proper code for photo goes here --}}
@@ -79,7 +78,6 @@
 {{else}}
 <p>No available pets to adopt at this time!</p>
 {{/each}}
-
 
 </section>
 
