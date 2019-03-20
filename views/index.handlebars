@@ -3,23 +3,38 @@
       <div class="w3-container">
                 <!--Pet selections-->
 
-{{!-- breed --}}
-                {{!-- <div class="w3-bar w3-center" id="petAttributes" style="margin-top: 2rem;">
-                        <div class="w3-dropdown-hover" style="width: 20%">
-                            <button class="w3-button w3-hover-green" id="">Breed</button>
-                        </div> 
-                      </div>--}}
 
-{{!-- age --}}
-                        {{!-- <div class="w3-dropdown-hover" style="width: 20%">
-                            <button class="w3-button w3-hover-green" id="">Age</button>
-                                <div class="w3-dropdown-content w3-bar-block w3-border">
+
+{{!-- gender --}}
+                        <div class="w3-dropdown-hover" style="width: 20%">
+                            <button class="w3-button w3-hover-green" id="">Gender</button>
+                                <div class="w3-dropdown-content w3-bar-block w3-border" id="gender">
+                                    <a href="#" class="w3-bar-item w3-button" id="male">Male</a>
+                                    <a href="#" class="w3-bar-item w3-button" id="female">Female</a>
+                                </div>
+                        </div>
+
+ {{!-- age --}}
+                        <div class="w3-dropdown-hover" style="width: 20%">
+                            <button class="w3-button w3-hover-green" >Age</button>
+                                <div class="w3-dropdown-content w3-bar-block w3-border" id="age">
                                     <a href="#" class="w3-bar-item w3-button">Puppy</a>
                                     <a href="#" class="w3-bar-item w3-button">Young</a>
                                     <a href="#" class="w3-bar-item w3-button">Adult</a>
                                     <a href="#" class="w3-bar-item w3-button">Senior</a>
                                 </div>
-                        </div> --}}
+                        </div>
+
+
+
+{{!-- breed --}}
+                {{!-- <div class="w3-bar w3-center" id="petAttributes" style="margin-top: 2rem;">
+                        <div class="w3-dropdown-hover" style="width: 20%">
+                            <button class="w3-button w3-hover-green" id="">Breed</button>
+                        </div> 
+               </div> --}}
+
+
 {{!-- size --}}
                         {{!-- <div class="w3-dropdown-hover" style="width: 20%">
                             <button class="w3-button w3-hover-green" id="">Size</button>
@@ -30,35 +45,30 @@
                                 </div>
                         </div> --}}
 
-{{!-- gender --}}
-                        <div class="w3-dropdown-hover" style="width: 20%">
-                            <button class="w3-button w3-hover-green" id="">Gender</button>
-                                <div class="w3-dropdown-content w3-bar-block w3-border">
-                                    <a href="#" class="w3-bar-item w3-button" id="male">Male</a>
-                                    <a href="#" class="w3-bar-item w3-button" id="female">Female</a>
-                                </div>
-                        </div>
+
 {{!--good with  --}}
-                        {{!-- <div class="w3-dropdown-hover" style="width: 20%">
+                         {{!-- <div class="w3-dropdown-hover" style="width: 20%">
                             <button class="w3-button w3-hover-green" id="">Good With</button>
                                 <div class="w3-dropdown-content w3-bar-block w3-border">
                                         <a href="#" class="w3-bar-item w3-button">Kids</a>
                                         <a href="#" class="w3-bar-item w3-button">Other Dogs</a>
                                         <a href="#" class="w3-bar-item w3-button">Cats</a>
                                 </div>
-                        </div> --}}
-                 
+                        </div>  --}}
         </div>
 
 
 <section id="petListing" class="w3-container" >
 {{#each Pets}}
-<div class="pet">
+{{!-- {{#unless petsAdopted}}
+{{/unless}} --}}
+
+<div class="pet" data-id={{id}}>
 <h3>Name: {{name}}</h3>
 {{!--proper code for photo goes here --}}
 {{!-- <src>{{photo}}</src> --}}
 <ul>
-  <li>Breed: {{breed}}</li>
+  <li>Breed: <span class="test1">{{breed}}</span></li>
   <li>Age: {{age}}</li>
   <li>Size: {{size}}</li>
   <li>Gender: {{gender}}</li>
@@ -69,6 +79,7 @@
 {{else}}
 <p>No available pets to adopt at this time!</p>
 {{/each}}
+
 
 </section>
 

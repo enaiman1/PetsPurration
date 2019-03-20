@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "MySql123",
     "database": "adoptiondb",
     "host": "localhost",
     "dialect": "mysql"

@@ -1,12 +1,14 @@
 var db = require("../models");
 
 module.exports = function(app) {
+
+  
   // Get all pets, return as JSON
-  app.get("/api/pets", function(req, res) {
-    db.Pet.findAll({}).then(function(allPets) {
-      res.json(allPets);
-    });
-  });
+  // app.get("/api/pets", function(req, res) {
+  //   db.Pet.findAll({}).then(function(allPets) {
+  //     res.json(allPets);
+  //   });
+  // });
 
   // Get all users, return as JSON
   app.get("/api/users", function(req, res) {
@@ -29,19 +31,30 @@ module.exports = function(app) {
   // Get all dogs of a param, of param, return as JSON
   // Search any column (col) and any value (val) and get back all dogs
   // Example: find all dogs where age = 5; find all dogs where location = Orlando; find all dogs where breed = chiahuahua
-  app.get("/api/pets/:col/:val", function(req, res) {
-    var col = req.params.col;
-    var val = req.params.val;
+  app.get("/api/pets/", function(req, res) {
+    var query = req.query;
+    console.log(query);
 
     db.Pet.findAll({
-      where: {
-        [col]: val
-      }
+      where: query
     }).then(function(result) {
-      res.json(result);
+      res.json(result)
+      // res.render("index", {
+      //   Pets: result
+      // });
+     
     });
   });
 
+  app.get("api/sendmales", function(res,res){
+    res.json({site:"/gender/males"})
+  })
+
+
+  // app.get("/api/pets/:gender", function(req, res) {
+  //   console.log("hey there");
+  //   console.log(req.params);
+  // })
   // Create a new example
   // app.post("/api/", function(req, res) {
   //   db.Example.create(req.body).then(function(dbExample) {

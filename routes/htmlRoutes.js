@@ -23,14 +23,16 @@ module.exports = function(app) {
     });
   });
 
-  // // Load second page, display one pet
-  // app.get("/pets/:id", function(req, res) {
-  //   db.Pet.findOne({ where: { id: req.params.id } }).then(function(onePet) {
-  //     res.render("example", {
-  //       Pets: onePet
-  //     });
-  //   });
-  // });
+  // Load second page, display one pet
+  app.get("/gender/males", function(req, res) {
+    db.Pet.findAll({ where: { gender: "Male" } }).then(function(malePets) {
+      res.render("malePets", {
+        Pets: malePets
+      });
+      
+      
+    });
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
