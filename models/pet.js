@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       validate: {
         isIn: [
-          ["puppy", "young adult", "senior", "Puppy", "Young Adult", "Senior"]
+          ["puppy", "young", "adult", "senior", "Puppy", "Young", "Adult", "Senior"]
         ]
       }
     },
@@ -41,6 +41,14 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false
     }
   });
+
+  Pet.associate = function(models) {
+    Pet.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: true
+      }
+    });
+  }
 
   return Pet;
 };
