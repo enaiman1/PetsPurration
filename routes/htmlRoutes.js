@@ -23,16 +23,6 @@ module.exports = function(app) {
     });
   });
 
-  // Load second page, display one pet
-  app.get("/gender/males", function(req, res) {
-    db.Pet.findAll({ where: { gender: "Male" } }).then(function(malePets) {
-      res.render("malePets", {
-        Pets: malePets
-      });
-      
-      
-    });
-  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {

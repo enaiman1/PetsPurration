@@ -1,72 +1,80 @@
+$(function() {
+  var filter = {};
+  var recursiveEncoded;
+  var recursiveDecoded;
 
-$(function () {
-var filter = {
-  gender: false,
-  age: false
-}
-  // when user clicks on male
-  $("#gender a").on("click", function (e) {
-    
+  // When user clicks on gender drop down
+  $("#gender a").on("click", function(e) {
     console.log("gender selected");
 
+    // Store the gender selected as "gender"
     var gender = $(this).text();
     console.log(gender);
 
-    filter.gender = gender;
-    // var maleSelected = $(this).data("allMales");
-updateList();
+    // If the gender selected was already selected, unselect it
+    if (filter.gender === gender) {
+      delete filter.gender;
+      // Else select the new gender
+    } else {
+      filter.gender = gender;
+    }
+    console.log(filter);
 
+    // Serialize our filter object as a query string and a URI-decoded version
+    recursiveEncoded = $.param(filter);
+    recursiveDecoded = decodeURIComponent($.param(filter));
+    console.log(recursiveEncoded);
+    console.log(recursiveDecoded);
+
+    // Make an ajax call to get filtered pets
+    updateList();
   });
 
-  $("#age a").on("click", function (e) {
-    
+  // When user click on age drop down
+  $("#age a").on("click", function(e) {
     console.log("age selected");
 
+    // Store the age selected as "age"
     var age = $(this).text();
     console.log(age);
 
-    filter.age = age;
-    // var maleSelected = $(this).data("allMales");
-updateList();
+    // If the age selected was already selected, unselect it
+    if (filter.age === age) {
+      delete filter.age;
+      // Else select the new age
+    } else {
+      filter.age = age;
+    }  
+    console.log(filter);
 
+    // Serialize our filter object as a query string and a URI-decoded version
+    recursiveEncoded = $.param(filter);
+    recursiveDecoded = decodeURIComponent($.param(filter));
+    console.log(recursiveEncoded);
+    console.log(recursiveDecoded);
+    
+    // Make an ajax call to get filtered pets
+    updateList();
   });
 
+  // Ajax call to filter pets
+  function updateList() {
+    query = recursiveEncoded;
+    console.log(query);
 
-
-// window.location="/gender/males"
-function updateList(){
     $.ajax({
       url: "/api/pets?" + query,
       method: "GET"
-    }).then(function (res) {
-      
-
-     
-    console.log(filter);
-  })
-}
-    // get request
-    // $.ajax("/api/pets/gender/" + gender, {
-    //   method: "GET",
-    //   // data: maleSelected
-    // }).then(function (res) {
-
-
-    //   // e.preventDefault();
-    //   // location.reload();
-    // });
-
+    }).then(function(res) {
+      // Here res = an array of pet objects
+      console.log(res);
+    });
+  }
 });
 
-
-
-
-
+// location.reload();
 
 // ---- all code below is example code--//
-
-
-
 
 // Get references to page elements
 // var $exampleText = $("#example-text");
