@@ -73,8 +73,13 @@
   <li>Size: {{size}}</li>
   <li>Gender: {{gender}}</li>
   <li>location: {{location}}</li>
-  <li>Available: {{adopted}}</li>
+  <li>Adopted: {{adopted}}</li>
 </ul>
+
+<button class="change-adopted" data-id="{{id}}" data-newadopted="{{adopted}}">
+    Adopt Me
+</button>
+
 </div>
 {{else}}
 <p>No available pets to adopt at this time!</p>

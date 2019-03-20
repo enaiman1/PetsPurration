@@ -16,10 +16,10 @@ module.exports = function(app) {
         adopted: true
       }
     }).then(function(petsAdopted) {
-        // res.json(petsAdopted);
-      res.render("adopted", {
-        Pets: petsAdopted
-      });
+        res.json(petsAdopted);
+      // res.render("adopted", {
+      //   Pets: petsAdopted
+      // });
     });
   });
 
@@ -35,5 +35,14 @@ module.exports = function(app) {
         return next();
 
     res.redirect("/signin");
+  }
+
+  function isAuthentic(req, res, next) {
+    if (req.user) {
+      console.log(req.user)
+      return next();
+    } else {
+      return res.status(401).json({error: "User not authenticated"})
+    }
   }
 };

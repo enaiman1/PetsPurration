@@ -41,4 +41,21 @@ module.exports = function(app) {
     });
   });
 
+  app.put("/api/pets/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+
+    console.log("Condition", condition);
+
+    db.Pet.update({
+      adopted: true,
+      UserId: req.user.id
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(results) {
+      res.json(results);
+    });
+  });
+
 };

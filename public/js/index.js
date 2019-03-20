@@ -70,6 +70,27 @@ $(function() {
       console.log(res);
     });
   }
+
+  $(".change-adopted").on("click", function(e) {
+
+    console.log("Adopt Me Clicked");
+
+    var id = $(this).data("id");
+    var newAdopted = $(this).data("newadopted");
+
+    var newAdoptedState = {
+      adopted: newAdopted
+    };
+
+    $.ajax("/api/pets/" + id, {
+      type: "PUT",
+      data: newAdoptedState
+    }).then(function() {
+      console.log("Changed adopted state to", newAdopted);
+    })
+
+  })
+
 });
 
 // location.reload();
