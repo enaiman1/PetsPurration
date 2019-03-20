@@ -1,8 +1,10 @@
+
 $(function() {
   var filter = {};
   var recursiveEncoded;
   var recursiveDecoded;
 
+  // --------gender select ------------//
   // When user clicks on gender drop down
   $("#gender a").on("click", function(e) {
     console.log("gender selected");
@@ -30,6 +32,9 @@ $(function() {
     updateList();
   });
 
+
+
+  // ---------- Age select -------------//
   // When user click on age drop down
   $("#age a").on("click", function(e) {
     console.log("age selected");
@@ -52,24 +57,95 @@ $(function() {
     recursiveDecoded = decodeURIComponent($.param(filter));
     console.log(recursiveEncoded);
     console.log(recursiveDecoded);
-    
     // Make an ajax call to get filtered pets
     updateList();
   });
 
-  // Ajax call to filter pets
+  // ------- Size Select -------//
+// When user click on size drop down
+  $("#size a").on("click", function(e) {
+    console.log("size selected");
+
+    // Store the age selected as "age"
+    var size = $(this).text();
+    console.log(size);
+
+    // If the age selected was already selected, unselect it
+    if (filter.size === size) {
+      delete filter.size;
+      // Else select the new age
+    } else {
+      filter.size = size;
+    }  
+    console.log(filter);
+
+    // Serialize our filter object as a query string and a URI-decoded version
+    recursiveEncoded = $.param(filter);
+    recursiveDecoded = decodeURIComponent($.param(filter));
+    console.log(recursiveEncoded);
+    console.log(recursiveDecoded);
+    // Make an ajax call to get filtered pets
+    updateList();
+  });
+  
+  // ------- Goode With ------------
+  // When user click on age drop down
+  $("#good-with a").on("click", function(e) {
+    console.log("good witg selected");
+
+    // Store the age selected as "age"
+    var goodWith = $(this).text();
+    console.log(goodWith);
+
+    // If the age selected was already selected, unselect it
+    if (filter.goodWith === goodWith) {
+      delete filter.goodWith;
+      // Else select the new age
+    } else {
+      filter.goodWith = goodWith;
+    }  
+    console.log(filter);
+
+    // Serialize our filter object as a query string and a URI-decoded version
+    recursiveEncoded = $.param(filter);
+    recursiveDecoded = decodeURIComponent($.param(filter));
+    console.log(recursiveEncoded);
+    console.log(recursiveDecoded);
+    // Make an ajax call to get filtered pets
+    updateList();
+  });
+
+  
+
+  //Create a function that uses Ajax call to filter pets
   function updateList() {
     query = recursiveEncoded;
     console.log(query);
+
+
+    // $(".pet").empty();
+
 
     $.ajax({
       url: "/api/pets?" + query,
       method: "GET"
     }).then(function(res) {
       // Here res = an array of pet objects
+
+    //  var results =res.data;
+    //  for (var i = 0; i < results.length; i++) {
+    //   var dogDiv = $("<div class=\"dog-filter\">");
+
+      // if (results.length > 1) {
+      //   filter.push(results)
+      // }
+  
+        // $(".pet").append(res);
       console.log(res);
+      // }
     });
   }
+
 
   $(".change-adopted").on("click", function(e) {
 
