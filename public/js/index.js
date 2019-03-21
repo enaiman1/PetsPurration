@@ -1,12 +1,12 @@
 
-$(function() {
+$(function () {
   var filter = {};
   var recursiveEncoded;
   var recursiveDecoded;
 
   // --------gender select ------------//
   // When user clicks on gender drop down
-  $("#gender a").on("click", function(e) {
+  $("#gender a").on("click", function (e) {
     console.log("gender selected");
 
     // Store the gender selected as "gender"
@@ -36,7 +36,7 @@ $(function() {
 
   // ---------- Age select -------------//
   // When user click on age drop down
-  $("#age a").on("click", function(e) {
+  $("#age a").on("click", function (e) {
     console.log("age selected");
 
     // Store the age selected as "age"
@@ -49,7 +49,7 @@ $(function() {
       // Else select the new age
     } else {
       filter.age = age;
-    }  
+    }
     console.log(filter);
 
     // Serialize our filter object as a query string and a URI-decoded version
@@ -62,8 +62,8 @@ $(function() {
   });
 
   // ------- Size Select -------//
-// When user click on size drop down
-  $("#size a").on("click", function(e) {
+  // When user click on size drop down
+  $("#size a").on("click", function (e) {
     console.log("size selected");
 
     // Store the age selected as "age"
@@ -76,7 +76,7 @@ $(function() {
       // Else select the new age
     } else {
       filter.size = size;
-    }  
+    }
     console.log(filter);
 
     // Serialize our filter object as a query string and a URI-decoded version
@@ -87,11 +87,11 @@ $(function() {
     // Make an ajax call to get filtered pets
     updateList();
   });
-  
+
   // ------- Goode With ------------
   // When user click on age drop down
-  $("#good-with a").on("click", function(e) {
-    console.log("good witg selected");
+  $("#good-with a").on("click", function (e) {
+    console.log("good with selected");
 
     // Store the age selected as "age"
     var goodWith = $(this).text();
@@ -103,7 +103,7 @@ $(function() {
       // Else select the new age
     } else {
       filter.goodWith = goodWith;
-    }  
+    }
     console.log(filter);
 
     // Serialize our filter object as a query string and a URI-decoded version
@@ -115,39 +115,51 @@ $(function() {
     updateList();
   });
 
-  
+
 
   //Create a function that uses Ajax call to filter pets
   function updateList() {
     query = recursiveEncoded;
     console.log(query);
 
-
-    // $(".pet").empty();
-
+    $("#petListing").html("");
 
     $.ajax({
       url: "/api/pets?" + query,
       method: "GET"
-    }).then(function(res) {
+    }).then(function (res) {
       // Here res = an array of pet objects
 
-    //  var results =res.data;
-    //  for (var i = 0; i < results.length; i++) {
-    //   var dogDiv = $("<div class=\"dog-filter\">");
+      var result = res;
 
-      // if (results.length > 1) {
-      //   filter.push(results)
-      // }
-  
-        // $(".pet").append(res);
+      for (var i = 0; i < result.length; i++) {
+        var newDiv = $("<div>");
+        var name = $("<h2>").text("Name: " + result[i].name);
+        var breed = $("<li>").text("Breed: " + result[i].breed);
+        var age = $("<li>").text("Age: " + result[i].age);
+        var size = $("<li>").text("Size: " + result[i].size)
+        var gender = $("<li>").text("Gender: " + result[i].gender);
+        var location = $("<li>").text("Location: " + result[i].location);
+
+
+        // add all the vars to newDiv
+        newDiv.append(name, breed, size, gender, age, location, button);
+        $("#petListing").append(newDiv);
+
+
+        var button = $("<button class='change-adopted'>").click(function () {
+          $("p").append("Adopt Me");
+        })
+      }
+
+
       console.log(res);
-      // }
+
     });
   }
 
 
-  $(".change-adopted").on("click", function(e) {
+  $(".change-adopted").on("click", function (e) {
 
     console.log("Adopt Me Clicked");
 
@@ -161,7 +173,7 @@ $(function() {
     $.ajax("/api/pets/" + id, {
       type: "PUT",
       data: newAdoptedState
-    }).then(function() {
+    }).then(function () {
       console.log("Changed adopted state to", newAdopted);
     })
 
