@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     photo: {
-      type: DataTypes.TINYINT
+      type: DataTypes.STRING
     },
     breed: {
       type: DataTypes.STRING
