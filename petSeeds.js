@@ -23,11 +23,7 @@ var petsSeed = [
     name: "Rupert",
     photo: "/images/chocolab.jpg",
     breed: "Chocolate Lab",
-<<<<<<< Updated upstream
-    age: "young adult",
-=======
     age: "Young",
->>>>>>> Stashed changes
     size: "Large",
     gender: "Male",
     location: "Orlando",
@@ -57,11 +53,7 @@ var petsSeed = [
     name: "Duke",
     photo: "/images/germanShep.jpg",
     breed: "German Shepherd",
-<<<<<<< Updated upstream
-    age: "young adult",
-=======
     age: "Adult",
->>>>>>> Stashed changes
     size: "Large",
     gender: "Male",
     location: "Ocoee",
@@ -71,11 +63,7 @@ var petsSeed = [
     name: "Amos",
     photo: "/images/weimaraner.jpg",
     breed: "Weimaraner",
-<<<<<<< Updated upstream
-    age: "young adult",
-=======
     age: "Adult",
->>>>>>> Stashed changes
     size: "Large",
     gender: "Male",
     location: "Orlando",
@@ -85,11 +73,7 @@ var petsSeed = [
     name: "Annie",
     photo: "/images/golden.jpg",
     breed: "Golden Retriever",
-<<<<<<< Updated upstream
-    age: "young adult",
-=======
     age: "Young",
->>>>>>> Stashed changes
     size: "Large",
     gender: "Female",
     location: "Kissimmee",

@@ -2,70 +2,72 @@ var db = require("../models");
 
 module.exports = function(app) {
 
-  
-  // Get all pets, return as JSON
-  // app.get("/api/pets", function(req, res) {
-  //   db.Pet.findAll({}).then(function(allPets) {
-  //     res.json(allPets);
-  //   });
-  // });
-
   // Get all users, return as JSON
   app.get("/api/users", function(req, res) {
     db.User.findAll({}).then(function(allUsers) {
       res.json(allUsers);
     });
   });
-  
-  // Get all males or females, return as JSON
-  // app.get("/api/pets/gender/:gender", function(req, res) {
-  //   db.Pet.findAll({
-  //     where: {
-  //       gender: req.params.gender
-  //     }
-  //   }).then(function(allMales) {
-  //     res.json(allMales);
-  //   });
-  // });
 
+  app.get("/api/users/data", function(req, res) {
+    if (!req.user) {
+      res.json({});
+    } else {
+      res.json({
+        email: req.user.email,
+        id: req.user.id,
+        username: req.user.username
+      });
+    }
+  });
+  
   // Get all dogs of a param, of param, return as JSON
   // Search any column (col) and any value (val) and get back all dogs
   // Example: find all dogs where age = 5; find all dogs where location = Orlando; find all dogs where breed = chiahuahua
+  // app.get("/api/pets/:col/:val", function(req, res) {
+  //   var col = req.params.col;
+  //   var val = req.params.val;
+
+  //   db.Pet.findAll({
+  //     where: {
+  //       [col]: val
+  //     }
+  //   }).then(function(selectedPets) {
+  //     res.json(selectedPets);
+  //   });
+  // });
+
+
   app.get("/api/pets/", function(req, res) {
+    console.log(req.body);
     var query = req.query;
+
+    // query = {gender: "male", age: "puppy"}
+
     console.log(query);
 
     db.Pet.findAll({
       where: query
     }).then(function(result) {
-      res.json(result)
-      // res.render("index", {
-      //   Pets: result
-      // });
-     
+      res.json(result)     
     });
   });
 
-  app.get("api/sendmales", function(res,res){
-    res.json({site:"/gender/males"})
-  })
+  app.put("/api/pets/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
 
+    console.log("Condition", condition);
 
-  // app.get("/api/pets/:gender", function(req, res) {
-  //   console.log("hey there");
-  //   console.log(req.params);
-  // })
-  // Create a new example
-  // app.post("/api/", function(req, res) {
-  //   db.Example.create(req.body).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
+    db.Pet.update({
+      adopted: true,
+      UserId: req.user.id
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(results) {
+      res.json(results);
+    });
+  });
 
-  // Delete an example by id
-  // app.delete("/api/examples/:id", function(req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
 };
