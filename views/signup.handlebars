@@ -1,31 +1,81 @@
-<!DOCTYPE html>
-<html>
- 
-<head>
-    <title></title>
-</head>
- 
-<body>
-    <form id="signup" name="signup" method="post" action="/signup">
-        <label for="email">Email Address</label>
-        <input class="text" name="email" type="email" />
-        <label for="firstname">First Name</label>
-        <input name="firstname" type="text" />
+
+<header>
+    <header class="showcase">
+        <div class="content">
+            <div>
+                <h1 class="title">PetsPurration</h1>
+            </div>
+            <img src="images/pawLogo.png" class="logo w3-animate-fading" alt=" logo">
+            <div class="text">
+                <p> Puurrrfectly phenomenal way to find your new companion </p>
+            </div>
+            {{!-- form --}}
+            <div class="w3-card-4">
+                <div class="w3-container w3-blue">
+                    <h2>Sign Up</h2>
+                </div>
+                <form class="w3-container"  id="signup" name="signup" method="post" action="/signup">
+{{!-- email --}}
+                    <label for="email">
+                        <h4>Email</h4>
+                    </label>
+                    <input class="w3-input" class="text" name="email" type="email" type="text">
+{{!-- first name--}}
+
+<label for="firstname">
+     <h4>First Name</h4>
+</label>
+<input class="w3-input" type="text">
+
+{{!--  --}}
+
+                    <label>
+                        <h4>Password</h4>
+                    </label>
+                    <input class="w3-input" type="text">
+
+                    <button class="w3-btn w3-blue w3-margin" type="submit" value="Sign In">Submit</button>
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    {{!-- <form id="signup" name="signup" method="post" action="/signup">
+        <label for="email">Email Address</label> --}}
+        {{!-- <input class="text" name="email" type="email" /> --}}
+        {{!-- <label for="firstname">First Name</label>
+        <input name="firstname" type="text" /> --}}
+
+
         <label for="lastname">Last Name</label>
         <input name="lastname" type="text" />
+
+
         <label for="username">Username</label>
         <input name="username" type="text" />
+
+
         <label for="phonenumber">Phone Number</label>
         <input name="phonenumber" type="text">
+
         <label for="location">City</label>
         <input name="location" type="text">
+
         <label for="housing">Type of Housing</label>
         <input name="housing" type="text">
+
         <label for="password">Password</label>
         <input name="password" type="password" />
         <input class="btn" type="submit" value="Sign Up" />
     </form>
  
-</body>
- 
-</html>
