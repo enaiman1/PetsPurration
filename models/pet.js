@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     gender: {
       type: DataTypes.STRING,
       validate: {
-        isIn: [["Male", "Female", "Male", "Female"]]
+        isIn: [["Male", "Female"]]
       }
     },
     location: {
