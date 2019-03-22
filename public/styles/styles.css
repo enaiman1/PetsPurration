@@ -12,3 +12,38 @@ h3{
   text-decoration: underline black;
 }
 
+/* -------- sign in page --------- */
+.showcase::after{
+  content:"";
+  height: 100vh;
+  widows: 100%;
+  background-image: url(../images/headerPet.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  /* filter: blur(10px);
+  -webkit-filter: blur(10px); */
+  transition: all 1000ms;
+ 
+}
+
+.content {
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: 50%;
+  /* margin-top: 20px; */
+  margin-left: -130px;
+  width: 300px;
+  height: 350px;
+  text-align: center;
+  transition: all 1000ms;
+}
+
+.logo {
+  width: 300px;
+  height: 300px
+}
+
+/* ----end of sign page */

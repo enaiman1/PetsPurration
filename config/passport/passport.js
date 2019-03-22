@@ -13,7 +13,7 @@ module.exports = function(passport, user) {
     // Deserialized user
     passport.deserializeUser(function(id, done) {
         // Get the user and if successful, return an instance of the model, "get" the user object
-        User.findById(id).then(function(user) {
+        User.findByPk(id).then(function(user) {
             if (user) {
                 done(null, user.get());
             } else {
@@ -119,6 +119,7 @@ module.exports = function(passport, user) {
 
                 // If password is right, log user in, get their info from db
                 var userinfo = user.get();
+                // console.log(userinfo);
                 return done(null, userinfo);
 
             }).catch(function(err) {
