@@ -32,6 +32,8 @@ module.exports = function(sequelize, DataTypes) {
 
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
       validate: {
         isEmail: true
       }
@@ -43,12 +45,13 @@ module.exports = function(sequelize, DataTypes) {
     },
 
     last_login: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW 
     },
 
     status: {
       type: DataTypes.ENUM("active", "inactive"),
-      defaultValue: "active"
+      defaultValue: "inactive"
     }
   });
 
