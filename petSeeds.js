@@ -1,7 +1,7 @@
 var petsSeed = [
   {
     name: "Scarlet",
-    photo: 1,
+    path: "/images/shiba.jpg",
     breed: "Shiba Inu",
     age: "puppy",
     size: "Medium",
@@ -11,7 +11,7 @@ var petsSeed = [
   },
   {
     name: "Murphy",
-    photo: 1,
+    photo: "/images/cairn.jpg",
     breed: "Cairn Terrier",
     age: "puppy",
     size: "Small",
@@ -21,7 +21,7 @@ var petsSeed = [
   },
   {
     name: "Rupert",
-    photo: 1,
+    photo: "/images/chocolab.jpg",
     breed: "Chocolate Lab",
     age: "young",
     size: "Large",
@@ -31,8 +31,8 @@ var petsSeed = [
   },
   {
     name: "Sophie",
-    photo: 1,
-    breed: "Chiahuahua",
+    photo: "/images/chihuahua1.jpg",
+    breed: "Chihuahua",
     age: "senior",
     size: "Small",
     gender: "Female",
@@ -41,8 +41,8 @@ var petsSeed = [
   },
   {
     name: "Tina",
-    photo: 1,
-    breed: "Chiahuahua",
+    photo: "/images/chihuahua2.jpg",
+    breed: "Chihuahua",
     age: "puppy",
     size: "Small",
     gender: "Female",
@@ -51,7 +51,7 @@ var petsSeed = [
   },
   {
     name: "Duke",
-    photo: 1,
+    photo: "/images/germanShep.jpg",
     breed: "German Shepherd",
     age: "adult",
     size: "Large",
@@ -61,7 +61,7 @@ var petsSeed = [
   },
   {
     name: "Amos",
-    photo: 1,
+    photo: "/images/weimaraner.jpg",
     breed: "Weimaraner",
     age: "adult",
     size: "Large",
@@ -71,7 +71,7 @@ var petsSeed = [
   },
   {
     name: "Annie",
-    photo: 1,
+    photo: "/images/golden.jpg",
     breed: "Golden Retriever",
     age: "young",
     size: "Large",
@@ -81,7 +81,7 @@ var petsSeed = [
   },
   {
     name: "Diesel",
-    photo: 1,
+    photo: "/images/pibull.jpg",
     breed: "Pitbull",
     age: "puppy",
     size: "Large",
@@ -91,7 +91,7 @@ var petsSeed = [
   },
   {
     name: "Doodle",
-    photo: 1,
+    photo: "/images/lab.jpg",
     breed: "Chocolate Lab",
     age: "senior",
     size: "Large",
@@ -101,7 +101,7 @@ var petsSeed = [
   },
   {
     name: "Walter",
-    photo: 1,
+    photo: "/images/pug.jpg",
     breed: "Pug",
     age: "senior",
     size: "Small",
@@ -111,7 +111,7 @@ var petsSeed = [
   },
   {
     name: "Poppy",
-    photo: 1,
+    photo: "/images/pug.jpg",
     breed: "Pug",
     age: "puppy",
     size: "Small",
@@ -121,7 +121,7 @@ var petsSeed = [
   },
   {
     name: "Dozer",
-    photo: 1,
+    photo: "/images/bulldog.jpg",
     breed: "Bulldog",
     age: "senior",
     size: "Medium",
