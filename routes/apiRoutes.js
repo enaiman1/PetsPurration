@@ -8,6 +8,18 @@ module.exports = function(app) {
       res.json(allUsers);
     });
   });
+
+  app.get("/api/users/data", function(req, res) {
+    if (!req.user) {
+      res.json({});
+    } else {
+      res.json({
+        email: req.user.email,
+        id: req.user.id,
+        username: req.user.username
+      });
+    }
+  });
   
   // Get all dogs of a param, of param, return as JSON
   // Search any column (col) and any value (val) and get back all dogs
