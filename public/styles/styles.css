@@ -1,16 +1,4 @@
-body{
-  font-family: 'Roboto', sans-serif;
-  background-color: burlywood;
-  font-size:14pt;
-}
-.list-group-item {
-  line-height: 2.5;
-}
 
-h3{
-  font-size:18;
-  text-decoration: underline black;
-}
 
 /* -------- sign in page --------- */
 .showcase::after{
