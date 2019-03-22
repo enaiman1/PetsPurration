@@ -1,7 +1,7 @@
 var petsSeed = [
   {
     name: "Scarlet",
-    path: "/images/shiba.jpg",
+    photo: "/images/shiba.jpg",
     breed: "Shiba Inu",
     age: "puppy",
     size: "Medium",
