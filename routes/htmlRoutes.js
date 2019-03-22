@@ -14,7 +14,8 @@ module.exports = function(app) {
     db.Pet.findAll({
       where: {
         adopted: true
-      }
+      },
+      include: [db.User]
     }).then(function(petsAdopted) {
         res.json(petsAdopted);
       // res.render("adopted", {

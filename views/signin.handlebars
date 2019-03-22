@@ -1,39 +1,39 @@
 <body>
-    <header>
-          <header class="showcase">
-    <div class="content">
-      <img src="images/pawLogo.png" class="logo" alt=" logo">
-      <div class="title">
-        <h1>PetsPurration</h1>
+  <header>
+    <header class="showcase">
+      <div class="content">
+        <img src="images/pawLogo.png" class="logo" alt=" logo">
+        <div class="title">
+          <h1>PetsPurration</h1>
+        </div>
+        <div class="text">
+          <p> Puurrrfectly phenomenal way to find your new companion </p>
+        </div>
+        {{!-- form --}}
+        <div class="w3-card-4">
+
+          <div class="w3-container w3-blue">
+            <h2>Sign In</h2>
+          </div>
+
+          <form id="signin" name="signin" method="post" action="signin" class="w3-container">
+
+            <label for="email">Email</label>
+            <input class="text w3-input" name="email" type="text">
+
+            <label for="password">Password</label>
+            <input class="w3-input" name="password" type="password">
+
+            <input class="btn w3-btn w3-blue-grey w3-margin" type="submit" value="Sign In">Sign In</button>
+
+          </form>
+
+        </div>
       </div>
-      <div class="text">
-       <p> Puurrrfectly phenomenal way to find your new companion </p>
-      </div>
-      {{!-- form --}}
-<div class="w3-card-4">
-
-<div class="w3-container w3-blue">
-  <h2>Sign In</h2>
-</div>
-
-<form class="w3-container">
-
-<label>Email</label>
-<input class="w3-input" type="text">
-
-<label>Password</label>
-<input class="w3-input" type="text">
-
- <button class="w3-btn w3-blue-grey w3-margin" type="submit" value="Sign In" >Sign In</button>
-
-</form>
-
-</div>
-    </div>
 
 
-  
- {{!-- <form id="signin" name="signin" method="post" action="signin">
+
+      {{!-- <form id="signin" name="signin" method="post" action="signin">
         <label for="email">Email Address</label>
         <input class="text" name="email" type="text" />
         <label for="password">Password</label>
@@ -41,7 +41,7 @@
         <input class="btn" type="submit" value="Sign In" />
     </form> --}}
     </header>
- 
+
 </body>
- 
+
 </html>
