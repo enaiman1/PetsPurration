@@ -1,4 +1,5 @@
 var authController = require("../controllers/authcontroller.js");
+var db = require("../models");
 
 module.exports = function(app, passport) {
     // When user goes to "/signup", render "signup" page (via authController)
@@ -17,11 +18,11 @@ module.exports = function(app, passport) {
 
     // When user goes to "/dashboard", render "dashboard" page (via authController")
     // Only show dashboard if user is logged in, else redirect to "signin" page
-    app.get("/dashboard", isLoggedIn, authController.dashboard);
+    app.get("/dashboard", isLoggedIn, updateActive, authController.dashboard);
 
     // When user goes to "/logout", render "/" (via authController)
     // Destroy their login instance/session
-    app.get("/logout", authController.logout);
+    app.get("/logout", updateInactive, authController.logout);
 
     // When user uses "signin" form and submits, run passport.js to authenticate
     // Redirect on success, reload on failure
@@ -33,10 +34,30 @@ module.exports = function(app, passport) {
 
     // For accessing "dashboard", user must be logged in
     function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated())
-
+        if (req.isAuthenticated()) {
             return next();
 
-        res.redirect("/signin");
+        } else {
+            res.redirect("/signin");
+
+        }
+    }
+
+    function updateActive(req, res, next) {
+        db.User.update(
+            {status: "active"},
+            {where: { id: req.user.id }}
+        );
+
+        return next();
+    }
+
+    function updateInactive(req, res, next) {
+        db.User.update(
+            {status: "inactive"},
+            {where: { id: req.user.id }}
+        );
+
+        return  next();
     }
 }

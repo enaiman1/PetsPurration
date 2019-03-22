@@ -14,25 +14,16 @@ module.exports = function(app) {
     db.Pet.findAll({
       where: {
         adopted: true
-      }
+      },
+      include: [db.User]
     }).then(function(petsAdopted) {
         // res.json(petsAdopted);
       res.render("adopted", {
-        Pets: petsAdopted
+      Pets: petsAdopted
       });
     });
   });
 
-  // Load second page, display one pet
-  app.get("/gender/males", function(req, res) {
-    db.Pet.findAll({ where: { gender: "Male" } }).then(function(malePets) {
-      res.render("malePets", {
-        Pets: malePets
-      });
-      
-      
-    });
-  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
@@ -45,5 +36,14 @@ module.exports = function(app) {
         return next();
 
     res.redirect("/signin");
+  }
+
+  function isAuthentic(req, res, next) {
+    if (req.user) {
+      console.log(req.user)
+      return next();
+    } else {
+      return res.status(401).json({error: "User not authenticated"})
+    }
   }
 };
