@@ -17,10 +17,10 @@ module.exports = function(app) {
       },
       include: [db.User]
     }).then(function(petsAdopted) {
-        res.json(petsAdopted);
-      // res.render("adopted", {
-      //   Pets: petsAdopted
-      // });
+        // res.json(petsAdopted);
+      res.render("adopted", {
+      Pets: petsAdopted
+      });
     });
   });
 

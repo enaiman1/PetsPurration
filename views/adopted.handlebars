@@ -1,4 +1,16 @@
 {{!-- dogs adopted & matched with owner --}}
 
-
-<p>this will be the page for when dogs have been adopted</p>
+<section id="petlisting" class="w3-container">
+    {{#each Pets}}
+    <h3>Name: {{name}}</h3>
+    <ul>
+        <li>Breed: <span class="test1">{{breed}}</span></li>
+        <li>Age: {{age}}</li>
+        <li>Size: {{size}}</li>
+        <li>Gender: {{gender}}</li>
+        <li>location: {{location}}</li>
+    </ul>
+    {{else}}
+    <p>No pets have been adopted at this time</p>
+    {{/each}}
+</section>
