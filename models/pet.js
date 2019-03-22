@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     size: {
       type: DataTypes.STRING,
       validate: {
-        isIn: [["Small", "Medium", "Large", "Small", "Medium", "Large"]]
+        isIn: [["Small", "Medium", "Large"]]
       }
     },
     gender: {
