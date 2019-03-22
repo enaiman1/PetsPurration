@@ -55,7 +55,16 @@
                </div> --}}
         </div>
 
+{{!-- Div where all the pet selections will be --}}
 
+<div class="w3-container petSelections">
+    <p class="genders"></p>
+    <p class="age"></p>
+    <p class="size"></p>
+    <p class="good-with"></p>
+</div>
+
+{{!-- This is where we put all the pets --}}
 <section id="petListing" class="w3-container" >
 {{#each Pets}}
 
@@ -69,7 +78,7 @@
   <li>Age: {{age}}</li>
   <li>Size: {{size}}</li>
   <li>Gender: {{gender}}</li>
-  <li>location: {{location}}</li>
+  <li>Location: {{location}}</li>
   {{!-- <li>Adopted: {{adopted}}</li> --}}
 </ul>
 

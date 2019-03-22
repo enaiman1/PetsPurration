@@ -12,10 +12,13 @@ $(function () {
     // Store the gender selected as "gender"
     var gender = $(this).text();
     console.log(gender);
-
+    //write the gender to the selections div
+    $(".genders").html(gender);
     // If the gender selected was already selected, unselect it
     if (filter.gender === gender) {
       delete filter.gender;
+    //delete the gender from div
+    $(".genders").empty();
       // Else select the new gender
     } else {
       filter.gender = gender;
@@ -42,10 +45,13 @@ $(function () {
     // Store the age selected as "age"
     var age = $(this).text();
     console.log(age);
-
+    //write the age to the selections div
+    $(".age").html(age);
     // If the age selected was already selected, unselect it
     if (filter.age === age) {
       delete filter.age;
+    //delete the age from div
+    $(".age").empty();
       // Else select the new age
     } else {
       filter.age = age;
@@ -69,10 +75,13 @@ $(function () {
     // Store the age selected as "age"
     var size = $(this).text();
     console.log(size);
-
+    //write the size to the selections div
+    $(".size").html(size);
     // If the age selected was already selected, unselect it
     if (filter.size === size) {
       delete filter.size;
+     //delete the size from div
+     $(".size").empty();
       // Else select the new age
     } else {
       filter.size = size;
@@ -88,7 +97,7 @@ $(function () {
     updateList();
   });
 
-  // ------- Goode With ------------
+  // ------- Good With ------------
   // When user click on age drop down
   $("#good-with a").on("click", function (e) {
     console.log("good with selected");
@@ -96,10 +105,13 @@ $(function () {
     // Store the age selected as "age"
     var goodWith = $(this).text();
     console.log(goodWith);
-
+    //write the good-with to the selections div
+    $(".good-with").html(goodWith);
     // If the age selected was already selected, unselect it
     if (filter.goodWith === goodWith) {
       delete filter.goodWith;
+    //delete the good-with from div
+    $(".good-with").empty();
       // Else select the new age
     } else {
       filter.goodWith = goodWith;
