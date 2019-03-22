@@ -1,12 +1,11 @@
-
-$(function () {
+$(function() {
   var filter = {};
   var recursiveEncoded;
   var recursiveDecoded;
 
   // --------gender select ------------//
   // When user clicks on gender drop down
-  $("#gender a").on("click", function (e) {
+  $("#gender a").on("click", function(e) {
     console.log("gender selected");
 
     // Store the gender selected as "gender"
@@ -17,8 +16,8 @@ $(function () {
     // If the gender selected was already selected, unselect it
     if (filter.gender === gender) {
       delete filter.gender;
-    //delete the gender from div
-    $(".genders").empty();
+      //delete the gender from div
+      $(".genders").empty();
       // Else select the new gender
     } else {
       filter.gender = gender;
@@ -35,11 +34,9 @@ $(function () {
     updateList();
   });
 
-
-
   // ---------- Age select -------------//
   // When user click on age drop down
-  $("#age a").on("click", function (e) {
+  $("#age a").on("click", function(e) {
     console.log("age selected");
 
     // Store the age selected as "age"
@@ -50,8 +47,8 @@ $(function () {
     // If the age selected was already selected, unselect it
     if (filter.age === age) {
       delete filter.age;
-    //delete the age from div
-    $(".age").empty();
+      //delete the age from div
+      $(".age").empty();
       // Else select the new age
     } else {
       filter.age = age;
@@ -69,7 +66,7 @@ $(function () {
 
   // ------- Size Select -------//
   // When user click on size drop down
-  $("#size a").on("click", function (e) {
+  $("#size a").on("click", function(e) {
     console.log("size selected");
 
     // Store the age selected as "age"
@@ -80,8 +77,8 @@ $(function () {
     // If the age selected was already selected, unselect it
     if (filter.size === size) {
       delete filter.size;
-     //delete the size from div
-     $(".size").empty();
+      //delete the size from div
+      $(".size").empty();
       // Else select the new age
     } else {
       filter.size = size;
@@ -99,7 +96,7 @@ $(function () {
 
   // ------- Good With ------------
   // When user click on age drop down
-  $("#good-with a").on("click", function (e) {
+  $("#good-with a").on("click", function(e) {
     console.log("good with selected");
 
     // Store the age selected as "age"
@@ -110,8 +107,8 @@ $(function () {
     // If the age selected was already selected, unselect it
     if (filter.goodWith === goodWith) {
       delete filter.goodWith;
-    //delete the good-with from div
-    $(".good-with").empty();
+      //delete the good-with from div
+      $(".good-with").empty();
       // Else select the new age
     } else {
       filter.goodWith = goodWith;
@@ -127,8 +124,6 @@ $(function () {
     updateList();
   });
 
-
-
   //Create a function that uses Ajax call to filter pets
   function updateList() {
     query = recursiveEncoded;
@@ -139,7 +134,7 @@ $(function () {
     $.ajax({
       url: "/api/pets?" + query,
       method: "GET"
-    }).then(function (res) {
+    }).then(function(res) {
       // Here res = an array of pet objects
 
       var result = res;
@@ -149,30 +144,43 @@ $(function () {
         var name = $("<h2>").text("Name: " + result[i].name);
         var breed = $("<li>").text("Breed: " + result[i].breed);
         var age = $("<li>").text("Age: " + result[i].age);
-        var size = $("<li>").text("Size: " + result[i].size)
+        var size = $("<li>").text("Size: " + result[i].size);
         var gender = $("<li>").text("Gender: " + result[i].gender);
         var location = $("<li>").text("Location: " + result[i].location);
+        var button = $(
+          '<button class="change-adopted" data-id="' +
+            result[i].id +
+            '" data-newadopted="' +
+            result[i].adopted +
+            '">Adopt Me</button>'
+        ).click(function() {
+          console.log("Adopt Me Clicked");
 
+          var id = $(this).data("id");
+          var newAdopted = $(this).data("newadopted");
+
+          var newAdoptedState = {
+            adopted: newAdopted
+          };
+
+          $.ajax("/api/pets/" + id, {
+            type: "PUT",
+            data: newAdoptedState
+          }).then(function() {
+            console.log("Changed adopted state to", newAdopted);
+          });
+        });
 
         // add all the vars to newDiv
         newDiv.append(name, breed, size, gender, age, location, button);
         $("#petListing").append(newDiv);
-
-
-        var button = $("<button class='change-adopted'>").click(function () {
-          $("p").append("Adopt Me");
-        })
       }
 
-
       console.log(res);
-
     });
   }
 
-
-  $(".change-adopted").on("click", function (e) {
-
+  $(".change-adopted").on("click", function(e) {
     console.log("Adopt Me Clicked");
 
     var id = $(this).data("id");
@@ -185,114 +193,8 @@ $(function () {
     $.ajax("/api/pets/" + id, {
       type: "PUT",
       data: newAdoptedState
-    }).then(function () {
+    }).then(function() {
       console.log("Changed adopted state to", newAdopted);
-    })
-
-  })
-
+    });
+  });
 });
-
-// location.reload();
-
-// ---- all code below is example code--//
-
-// Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $submitBtn = $("#submit");
-// var $exampleList = $("#example-list");
-
-// The API object contains methods for each kind of request we'll make
-// var API = {
-//   saveExample: function(example) {
-//     return $.ajax({
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       type: "POST",
-//       url: "api/examples",
-//       data: JSON.stringify(example)
-//     });
-//   },
-//   getExamples: function() {
-//     return $.ajax({
-//       url: "api/examples",
-//       type: "GET"
-//     });
-//   },
-//   deleteExample: function(id) {
-//     return $.ajax({
-//       url: "api/examples/" + id,
-//       type: "DELETE"
-//     });
-//   }
-// };
-
-// refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
-
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
-
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
-
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
-
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
-
-// Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
