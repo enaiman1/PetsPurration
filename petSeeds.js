@@ -7,7 +7,7 @@ var petsSeed = [
     size: "Medium",
     gender: "Female",
     location: "Kissimmee",
-    adopted: 1
+    adopted: 0
   },
   {
     name: "Murphy",
@@ -17,7 +17,7 @@ var petsSeed = [
     size: "Small",
     gender: "Male",
     location: "Orlando",
-    adopted: 1
+    adopted: 0
   },
   {
     name: "Rupert",

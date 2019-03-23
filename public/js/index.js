@@ -140,63 +140,71 @@ $(function() {
       var result = res;
 
       for (var i = 0; i < result.length; i++) {
-        // create new div
-        var newDiv = $("<div class='pet w3-margin w3-animate-left'>");
-        var name = $("<h3 class='petName'>").text("Name: " + result[i].name);
+        if (result[i].adopted === false) {
+          // create new div
+          var newDiv = $("<div class='pet w3-margin w3-animate-left'>");
+          var name = $("<h3 class='petName'>").text("Name: " + result[i].name);
 
-        // new row div
-        var divRow = $("<div class='w3-row'>")
+          // new row div
+          var divRow = $("<div class='w3-row'>");
 
-      //  new div for picture
-        var picCol = $("<div class='w3-col s1 m5 l3'>")
-        var image = $("<img id='image'>");
-        image.attr('src', result[i].photo);
+          //  new div for picture
+          var picCol = $("<div class='w3-col s1 m5 l3'>");
+          var image = $("<img id='image'>");
+          image.attr("src", result[i].photo);
 
-        //new div for pet info
-        var statCol =$("<div class='w3-col s1 m5 l3'>")
-        var breed = $("<li>").text("Breed: " + result[i].breed);
-        var age = $("<li>").text("Age: " + result[i].age);
-        var size = $("<li>").text("Size: " + result[i].size);
-        var gender = $("<li>").text("Gender: " + result[i].gender);
-        var location = $("<li>").text("Location: " + result[i].location);
+          //new div for pet info
+          var statCol = $("<div class='w3-col s1 m5 l3'>");
+          var breed = $("<li>").text("Breed: " + result[i].breed);
+          var age = $("<li>").text("Age: " + result[i].age);
+          var size = $("<li>").text("Size: " + result[i].size);
+          var gender = $("<li>").text("Gender: " + result[i].gender);
+          var location = $("<li>").text("Location: " + result[i].location);
 
-        //new div for button
-        var buttonCol =$("<div class='w3-col s1 m2 l3'>")
+          //new div for button
+          var buttonCol = $("<div class='w3-col s1 m2 l3'>");
 
-        var button = $(
-          '<button class="change-adopted w3-btn w3-indigo w3-hover-light-blue w3-border w3-round w3-cell-bottom" data-id="' +
-            result[i].id +
-            '" data-newadopted="' +
-            result[i].adopted +
-            '">Adopt Me</button>'
-        ).click(function() {
-          console.log("Adopt Me Clicked");
+          var button = $(
+            '<button class="change-adopted w3-btn w3-indigo w3-hover-light-blue w3-border w3-round w3-cell-bottom" data-id="' +
+              result[i].id +
+              '" data-newadopted="' +
+              result[i].adopted +
+              '">Adopt Me</button>'
+          ).click(function() {
+            console.log("Adopt Me Clicked");
 
-          var id = $(this).data("id");
-          var newAdopted = $(this).data("newadopted");
+            var id = $(this).data("id");
+            var newAdopted = $(this).data("newadopted");
 
-          var newAdoptedState = {
-            adopted: newAdopted
-          };
+            var newAdoptedState = {
+              adopted: newAdopted
+            };
 
-          $.ajax("/api/pets/" + id, {
-            type: "PUT",
-            data: newAdoptedState
-          }).then(function() {
-            console.log("Changed adopted state to", newAdopted);
+            $.ajax("/api/pets/" + id, {
+              type: "PUT",
+              data: newAdoptedState
+            }).then(function(res) {
+              console.log("Changed adopted state to", newAdopted);
+              console.log(res);
+              if (res !== "Must Log In") {
+                window.location.reload();
+              } else {
+                console.log("Must log in");
+              }
+            });
           });
-        });
 
-        // appending ajax call to the dom
+          // appending ajax call to the dom
 
-        picCol.append(image);
-        statCol.append(breed, size, gender, age, location);
-        buttonCol.append(button);
-       
-        divRow.append(picCol, statCol, buttonCol);
+          picCol.append(image);
+          statCol.append(breed, size, gender, age, location);
+          buttonCol.append(button);
 
-        newDiv.append(name, divRow );
-        $("#petListing").append(newDiv);
+          divRow.append(picCol, statCol, buttonCol);
+
+          newDiv.append(name, divRow);
+          $("#petListing").append(newDiv);
+        }
       }
 
       console.log(res);
@@ -209,6 +217,8 @@ $(function() {
     var id = $(this).data("id");
     var newAdopted = $(this).data("newadopted");
 
+    console.log(id);
+
     var newAdoptedState = {
       adopted: newAdopted
     };
@@ -216,11 +226,14 @@ $(function() {
     $.ajax("/api/pets/" + id, {
       type: "PUT",
       data: newAdoptedState
-    }).then(function() {
+    }).then(function(res) {
       console.log("Changed adopted state to", newAdopted);
+      console.log(res);
+      if (res !== "Must Log In") {
+        location.reload();
+      } else {
+        console.log("Must log in");
+      }
     });
   });
 });
-
-
-

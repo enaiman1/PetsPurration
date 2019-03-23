@@ -12,8 +12,8 @@
     <div class="w3-dropdown-hover w3-indigo w3-padding w3-center w3-round" style="width: 15%">
         <button class="w3-button w3-hover-light-blue" id="">Gender</button>
         <div class="w3-dropdown-content w3-bar-block w3-border" id="gender">
-            <a href="#" class="w3-bar-item w3-button" id="male">Male</a>
-            <a href="#" class="w3-bar-item w3-button" id="female">Female</a>
+            <a class="w3-bar-item w3-button" id="male">Male</a>
+            <a class="w3-bar-item w3-button" id="female">Female</a>
         </div>
     </div>
 
@@ -21,10 +21,10 @@
     <div class="w3-dropdown-hover w3-indigo w3-padding w3-center w3-round " style="width: 15%">
         <button class="w3-button w3-hover-light-blue">Age</button>
         <div class="w3-dropdown-content w3-bar-block w3-border" id="age">
-            <a href="#" class="w3-bar-item w3-button">Puppy</a>
-            <a href="#" class="w3-bar-item w3-button">Young</a>
-            <a href="#" class="w3-bar-item w3-button">Adult</a>
-            <a href="#" class="w3-bar-item w3-button">Senior</a>
+            <a class="w3-bar-item w3-button">Puppy</a>
+            <a class="w3-bar-item w3-button">Young</a>
+            <a class="w3-bar-item w3-button">Adult</a>
+            <a class="w3-bar-item w3-button">Senior</a>
         </div>
     </div>
 
@@ -33,9 +33,9 @@
     <div class="w3-dropdown-hover w3-indigo w3-padding w3-center w3-round" style="width: 15%">
         <button class="w3-button w3-hover-light-blue" id="">Size</button>
         <div class="w3-dropdown-content w3-bar-block w3-border" id="size">
-            <a href="#" class="w3-bar-item w3-button">Small</a>
-            <a href="#" class="w3-bar-item w3-button">Medium</a>
-            <a href="#" class="w3-bar-item w3-button">Large</a>
+            <a class="w3-bar-item w3-button">Small</a>
+            <a class="w3-bar-item w3-button">Medium</a>
+            <a class="w3-bar-item w3-button">Large</a>
         </div>
     </div>
 
@@ -70,13 +70,14 @@
 {{!-- This is where we put all the pets --}}
 <section id="petListing" class="w3-container  ">
     {{#each Pets}}
+    {{#unless adopted}}
 
     <div class="pet w3-margin w3-animate-zoom" data-id={{id}}>
         <h3 class="petName ">Name: {{name}}</h3>
         {{!-- start row --}}
         <div class="w3-row ">
-            <div class="w3-col s1 m5 l3" >
-                <img src={{photo}} id="image" >
+            <div class="w3-col s1 m5 l3">
+                <img src={{photo}} id="image">
             </div>
             <div class="w3-col s1 m5 l3">
                 <ul>
@@ -89,16 +90,52 @@
                 </ul>
             </div>
             <div class="w3-col  s1 m2 l3">
-            <button class="change-adopted w3-btn w3-indigo w3-hover-light-blue w3-border w3-round w3-cell-bottom" data-id="{{id}}" data-newadopted="{{adopted}}">
-                Adopt Me
-            </button>
+                <button class="change-adopted w3-btn w3-indigo w3-hover-light-blue w3-border w3-round w3-cell-bottom"
+                    data-id="{{id}}" data-newadopted="{{adopted}}">
+                    Adopt Me
+                </button>
             </div>
         </div>
     </div>
-    {{else}}
-    <p>No available pets to adopt at this time!</p>
+
+    {{/unless}}
     {{/each}}
 
+    {{#each Pets}}
+    {{#if adopted}}
+
+    <div class="pet w3-margin w3-animate-zoom" data-id={{id}}>
+        <h3 class="petName ">Name: {{name}}</h3>
+        {{!-- start row --}}
+        <div class="w3-row ">
+            <div class="w3-col s1 m5 l3">
+                <img src={{photo}} id="image">
+            </div>
+            <div class="w3-col s1 m5 l3">
+                <ul>
+                    <li><strong>Breed: </strong>{{breed}}</li>
+                    <li><strong>Age: </strong>{{age}}</li>
+                    <li><strong>Size: </strong>{{size}}</li>
+                    <li><strong>Gender: </strong>{{gender}}</li>
+                    <li><strong>Location: </strong> {{location}}</li>
+                    {{!-- <li>Adopted: {{adopted}}</li> --}}
+                </ul>
+            </div>
+            <div class="w3-col  s1 m2 l3">
+                <button class="change-adopted w3-btn w3-indigo w3-hover-light-blue w3-border w3-round w3-cell-bottom"
+                    data-id="{{id}}" data-newadopted="{{adopted}}">
+                    Adopt Me
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {{/if}}
+    {{/each}}
+
+    {{!-- <p>No available pets to adopt at this time!</p>
+    {{/each}}
+ --}}
 
 </section>
 
