@@ -3,7 +3,11 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page, display all pets
   app.get("/", function(req, res) {
-    db.Pet.findAll({}).then(function(allPets) {
+    db.Pet.findAll({
+      where: {
+        adopted: false
+      }
+    }).then(function(allPets) {
       res.render("index", {
         Pets: allPets
       });

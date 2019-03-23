@@ -20,6 +20,17 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/pets/adopted", function(req, res) {
+    db.Pet.findAll({
+      where: {
+        adopted: true
+      },
+      include: [db.User]
+    }).then(function(petsAdopted) {
+      res.json(petsAdopted);
+    });
+  });
   
   // Get all dogs of a param, of param, return as JSON
   // Search any column (col) and any value (val) and get back all dogs
@@ -58,16 +69,22 @@ module.exports = function(app) {
 
     console.log("Condition", condition);
 
-    db.Pet.update({
-      adopted: true,
-      UserId: req.user.id
-    }, {
-      where: {
-        id: req.params.id
-      }
-    }).then(function(results) {
-      res.json(results);
-    });
+    if (req.user) {
+
+      db.Pet.update({
+        adopted: true,
+        UserId: req.user.id
+      }, {
+        where: {
+          id: req.params.id
+        }
+      }).then(function(results) {
+        res.json(results);
+      });
+
+    } else {
+      res.send("Must Log In");
+    }
   });
 
 };
