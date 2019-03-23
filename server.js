@@ -22,7 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 // Use session to keep track of user's login status
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true })); // session secret
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -48,24 +50,49 @@ if (process.env.NODE_ENV === "development") {
 
 // Starting the server, syncing our models
 db.sequelize.sync(syncOptions).then(function() {
-  // Seed the users
-  for (var i = 0; i < userSeeds.length; i++) {
-    db.User.build(userSeeds[i]).save();
-  }
 
-  // Seed the pets
-  for (var j = 0; j < petSeeds.length; j++) {
-    db.Pet.build(petSeeds[j]).save();
-  }
+  db.Pet.findAndCountAll({
+    where: {}
+  }).then(function(res) {
+    console.log(res.count);
+    if (res.count === 0) {
+      // Seed the users
+      for (var i = 0; i < userSeeds.length; i++) {
+        db.User.build(userSeeds[i]).save();
+      }
+  
+      // Seed the pets
+      for (var j = 0; j < petSeeds.length; j++) {
+        db.Pet.build(petSeeds[j]).save();
+      }
+    }
 
-  // Start the server
-  app.listen(PORT, function() {
-    console.log("\n===> Listening on port %s. Visit http://localhost:%s/ in your browser.\n", PORT, PORT);
+    // Start the server
+    app.listen(PORT, function() {
+      console.log(
+        "\n===> Listening on port %s. Visit http://localhost:%s/ in your browser.\n",
+        PORT,
+        PORT
+      );
+    });
   });
 
-}).catch(function(err) {
+  }).catch(function(err) {
     console.log(err, "Something went wrong in the server");
   });
+
+    // Start the server
+  //   app.listen(PORT, function() {
+  //     console.log(
+  //       "\n===> Listening on port %s. Visit http://localhost:%s/ in your browser.\n",
+  //       PORT,
+  //       PORT
+  //     );
+  //   });
+  // })
+  // .catch(function(err) {
+  //   console.log(err, "Something went wrong in the server");
+  // });
 
 module.exports = app;
 
