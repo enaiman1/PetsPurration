@@ -81,7 +81,7 @@ var petsSeed = [
   },
   {
     name: "Diesel",
-    photo: "/images/pibull.jpg",
+    photo: "/images/pitbull.jpg",
     breed: "Pitbull",
     age: "Puppy",
     size: "Large",
