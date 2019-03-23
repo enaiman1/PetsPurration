@@ -1,16 +1,62 @@
 {{!-- dogs adopted & matched with owner --}}
 
-<section id="petlisting" class="w3-container">
+<div class="container w3-center">
+    <h1 class="title">Adopted</h1>
+    <p class="text">Pets who have found their furrrever after</p>
+</div>
+
+{{!-- <div class="container w3-row"> --}}
+{{!-- This is where we put all the pets --}}
+{{!-- <section class="w3-container w3-col s1 m6 l6"> --}}
+    <section class="w3-container">
     {{#each Pets}}
-    <h3>Name: {{name}}</h3>
-    <ul>
-        <li>Breed: <span class="test1">{{breed}}</span></li>
-        <li>Age: {{age}}</li>
-        <li>Size: {{size}}</li>
-        <li>Gender: {{gender}}</li>
-        <li>location: {{location}}</li>
-    </ul>
-    {{else}}
-    <p>No pets have been adopted at this time</p>
+
+    <div class="pet w3-margin w3-animate-zoom" data-id={{id}}>
+        <h3 class="petName ">Name: {{name}}</h3>
+        {{!-- start row --}}
+        <div class="w3-row ">
+            <div class="w3-col s1 m5 l3">
+                <img src={{photo}} id="image">
+            </div>
+            <div class="w3-col s1 m5 l3">
+                <ul>
+                    <li><strong>Breed: </strong>{{breed}}</li>
+                    <li><strong><b>Adopted</b></strong></li>
+                </ul>
+            </div>
+            {{!-- <div class="w3-col  s1 m2 l3">
+
+            </div> --}}
+        </div>
+    </div>
     {{/each}}
 </section>
+
+{{!-- user --}}
+{{!-- <section class="w3-container w3-col s1 m6 l6">
+    {{#each User}}
+
+    <div class="user w3-margin w3-animate-zoom" data-id={{id}}>
+        <h3 class="userName ">Name: {{username}}</h3> --}}
+        {{!-- start row --}}
+        {{!-- <div class="w3-row ">
+            <div class="w3-col s1 m5 l3"> --}}
+                {{!-- user photo here --}}
+                {{!-- <img src={{photo}} id="image"> --}}
+            {{!-- </div> --}}
+            {{!-- <div class="w3-col s1 m5 l3">
+                <ul>
+                    <li><strong>Name: </strong>{{firstname}}</li>
+                </ul>
+            </div> --}}
+            {{!-- <div class="w3-col  s1 m2 l3">
+
+            </div> --}}
+        {{!-- </div>
+    </div>
+    {{/each}}
+</section> --}}
+
+
+
+</div>
